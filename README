@@ -36,8 +36,7 @@ Examples:
 
 teamcity.build.runAs.command="C:\\Program Files\\SysInternals\\psexec.exe" -u %runas.username% -p %runas.password% {start_build_script}
 
-Note that in this case %runas.username% and %runas.password% will be substituted to real values provided in the build. For example,
-you can defined values for these parameters in a TeamCity project.
+Note that in this case %runas.username% and %runas.password% will be substituted to real values provided in the build. For example, you can defined values for these parameters in a TeamCity project.
 
 * Run as different user account on Linux (sudo)
 
