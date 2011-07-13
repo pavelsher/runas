@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="TC-agent-openapi">
+    <CLASSES>
+      <root url="jar://$TEAMCITY_DISTR$/devPackage/agent-api.jar!/" />
+      <root url="jar://$TEAMCITY_DISTR$/devPackage/common-api.jar!/" />
+      <root url="jar://$TEAMCITY_DISTR$/webapps/ROOT/WEB-INF/lib/util.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$TEAMCITY_DISTR$/devPackage/src/openApi-source.jar!/" />
+    </SOURCES>
+  </library>
+</component>

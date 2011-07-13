@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact name="runas-plugin (exploded)">
+    <output-path>$PROJECT_DIR$/out/artifacts/runas_plugin__exploded_</output-path>
+    <root id="root">
+      <element id="directory" name="agent">
+        <element id="archive" name="runas-agent.zip">
+          <element id="directory" name="runas">
+            <element id="directory" name="lib">
+              <element id="archive" name="runas-agent.jar">
+                <element id="module-output" name="runas-agent" />
+              </element>
+            </element>
+          </element>
+        </element>
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/teamcity-plugin.xml" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:noNamespaceSchemaLocation="urn:shemas-jetbrains-com:teamcity-plugin-v1-xml">
+  <info>
+    <name>runas</name>
+    <display-name>RunAs</display-name>
+    <version>0.1</version>
+    <description>This plugin can start build on the agent under some specific user account. Requires TeamCity 6.5.3 and higher.</description>
+  </info>
+  <deployment use-separate-classloader="false" />
+</teamcity-plugin>
