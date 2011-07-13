@@ -1,10 +1,10 @@
 package org.jetbrains.teamcity.runas;
 
 import jetbrains.buildServer.RunBuildException;
-import jetbrains.buildServer.agent.AgentExtension;
-import jetbrains.buildServer.agent.runner.BuildCommandLineProcessor;
 import jetbrains.buildServer.agent.AgentRunningBuild;
+import jetbrains.buildServer.agent.runner.BuildCommandLineProcessor;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
+import jetbrains.buildServer.log.Loggers;
 import jetbrains.buildServer.util.FileUtil;
 import jetbrains.buildServer.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
   private static final String BUILD_STARTUP_COMMAND_PARAM = "teamcity.build.runAs.command";
-  private static final String START_BUILD_COMMAND_MACRO = "{start_build_command}";
+  private static final String START_BUILD_COMMAND_MACRO = "{start_build_script}";
 
   @NotNull
   public ProgramCommandLine process(@NotNull final AgentRunningBuild build, @NotNull final ProgramCommandLine origCommandLine)
@@ -75,11 +75,22 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
       content.append("cd ").append(origCommandLine.getWorkingDirectory()).append("\n");
       content.append(createOriginalCommandLine(origCommandLine));
       FileUtil.writeFile(script, content.toString());
-      FileUtil.setExectuableAttribute(script.getAbsolutePath(), true);
+
+      setPermissions(script, "a+x"); // script needs to be made executable for all (chmod a+x)
     } catch (IOException e) {
       throw new RunBuildException("Failed to create temp file, error: " + e.toString());
     }
     return script;
+  }
+
+  private static void setPermissions(File script, String perms) throws IOException {
+    Process process = Runtime.getRuntime().exec(new String[]{"chmod", perms, script.getAbsolutePath()});
+    try {
+      process.waitFor();
+    }
+    catch (InterruptedException e) {
+      Loggers.AGENT.warn("Failed to execute chmod " + perms + " " + script.getAbsolutePath() + ", error: " + e.toString());
+    }
   }
 
   private static File createScriptForWindows(@NotNull final ProgramCommandLine origCommandLine, @NotNull final AgentRunningBuild build) throws RunBuildException {
