@@ -2,6 +2,7 @@ package org.jetbrains.teamcity.runas;
 
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.AgentExtension;
+import jetbrains.buildServer.agent.runner.BuildCommandLineProcessor;
 import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
 import jetbrains.buildServer.util.FileUtil;
@@ -140,16 +141,4 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
     if (replacement.indexOf(" ") != -1) replacement = "\"" + replacement + "\"";
     return command.replace(pattern, replacement);
   }
-}
-
-interface BuildCommandLineProcessor extends AgentExtension {
-  /**
-   * Is called right before the build process is started.
-   * @param build build
-   * @param origCommandLine original command line
-   * @return new, customized command line object (or original object if customization is not required)
-   * @throws jetbrains.buildServer.RunBuildException if build cannot be started
-   */
-  @NotNull
-  ProgramCommandLine process(@NotNull AgentRunningBuild build, @NotNull ProgramCommandLine origCommandLine) throws RunBuildException;
 }
