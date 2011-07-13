@@ -7,10 +7,12 @@ With help of this plugin you can run builds under different user accounts or per
 How To Build
 ==================
 
-1) Open project in IntelliJ IDEA Community or Ultimate Edition (http://www.jetbrains.com/idea/download/index.html)
-2) Choose Menu Build -> Build Artifacts
-3) Select runas-plugin artifact from the menu
-4) runas.zip file must be created in the project root
+1) Download and install TeamCity version 6.5.3 or later (http://www.jetbrains.com/teamcity/download/index.html)
+2) Download and install IntelliJ IDEA Community or Ultimate Edition (http://www.jetbrains.com/idea/download/index.html)
+3) Open project in IntelliJ IDEA
+4) Choose Menu Build -> Build Artifacts
+5) Select runas-plugin artifact from the menu
+6) runas.zip file must be created in the project root
 
 
 How To Install
