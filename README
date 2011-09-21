@@ -3,6 +3,10 @@ This is a RunAs plugin for JetBrains TeamCity: http://www.jetbrains.com/teamcity
 
 With help of this plugin you can run builds under different user accounts or perform some additional actions before or after build process.
 
+Download
+===========
+
+The last build of RunAs plugin can be downloaded from http://teamcity.jetbrains.com/viewLog.html?buildId=lastPinned&buildTypeId=bt332&tab=artifacts
 
 How To Build
 ==================
