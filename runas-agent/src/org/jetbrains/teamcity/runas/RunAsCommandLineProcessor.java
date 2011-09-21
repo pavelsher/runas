@@ -2,6 +2,7 @@ package org.jetbrains.teamcity.runas;
 
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.AgentRunningBuild;
+import jetbrains.buildServer.agent.BuildRunnerContext;
 import jetbrains.buildServer.agent.runner.BuildCommandLineProcessor;
 import jetbrains.buildServer.agent.runner.ProgramCommandLine;
 import jetbrains.buildServer.log.Loggers;
@@ -21,8 +22,9 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
   private static final String START_BUILD_COMMAND_MACRO = "{start_build_script}";
 
   @NotNull
-  public ProgramCommandLine process(@NotNull final AgentRunningBuild build, @NotNull final ProgramCommandLine origCommandLine)
+  public ProgramCommandLine process(@NotNull final BuildRunnerContext runnerContext, @NotNull final ProgramCommandLine origCommandLine)
     throws RunBuildException {
+    final AgentRunningBuild build = runnerContext.getBuild();
     final String execPath = getCustomExecutableCommand(build);
     if (execPath == null) return origCommandLine;
 
