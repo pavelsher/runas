@@ -6,7 +6,8 @@ With help of this plugin you can run builds under different user accounts or per
 Download
 ===========
 
-The last build of RunAs plugin can be downloaded from http://teamcity.jetbrains.com/viewLog.html?buildId=lastPinned&buildTypeId=bt332&tab=artifacts&guest=1
+The last build of RunAs plugin can be downloaded from:
+http://teamcity.jetbrains.com/guestAuth/repository/download/bt332/lastSuccessful/runas.zip
 
 How To Build
 ==================
