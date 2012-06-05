@@ -26,7 +26,24 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
     throws RunBuildException {
     final AgentRunningBuild build = runnerContext.getBuild();
     final String execPath = getCustomExecutableCommand(build);
-    if (execPath == null) return origCommandLine;
+    Map<String, String> props = build.getSharedConfigParameters();
+
+    /*
+    BuildProgressLogger logger = build.getBuildLogger();
+
+    for(String i : props.keySet()) {
+        logger.message("Key: " + i + " Value: " + props.get(i));
+    }
+    */
+
+    final Boolean useRunas =
+            (
+                    ( props.containsKey("runas.username") && !props.get("runas.username").isEmpty() )
+                    &&
+                    ( props.containsKey("runas.password") && !props.get("runas.password").isEmpty() )
+            );
+
+    if (execPath == null || !useRunas) return origCommandLine;
 
     final File script = createScriptFile(origCommandLine, build);
 
