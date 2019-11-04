@@ -1,4 +1,7 @@
 
+Attention: In terms of providing RunAs functionality this plugin is superseeded by [another JetBrains plugin](https://github.com/JetBrains/teamcity-runas-plugin).
+This repository can be used as example of wrapping command line and for historical purposes.
+
 This is a RunAs plugin for JetBrains TeamCity: http://www.jetbrains.com/teamcity/
 
 With help of this plugin you can run builds under different user accounts or perform some additional actions before or after build process.
