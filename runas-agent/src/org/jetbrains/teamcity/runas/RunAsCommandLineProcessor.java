@@ -1,5 +1,6 @@
 package org.jetbrains.teamcity.runas;
 
+import com.intellij.openapi.util.SystemInfo;
 import jetbrains.buildServer.RunBuildException;
 import jetbrains.buildServer.agent.AgentRunningBuild;
 import jetbrains.buildServer.agent.BuildRunnerContext;
@@ -56,17 +57,11 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
   }
 
   private static File createScriptFile(@NotNull final ProgramCommandLine origCommandLine, @NotNull AgentRunningBuild build) throws RunBuildException {
-    if (isWindows()) {
+    if (SystemInfo.isWindows) {
       return createScriptForWindows(origCommandLine, build);
     }
 
     return createScriptForUnix(origCommandLine, build);
-  }
-
-  private static boolean isWindows() throws RunBuildException {
-    final String osname = System.getProperty("os.name");
-    if (osname == null) throw new RunBuildException("System property os.name is not defined, unable to determine OS type");
-    return osname.toLowerCase().indexOf("windows") != -1;
   }
 
   private static File createScriptForUnix(@NotNull final ProgramCommandLine origCommandLine, @NotNull final AgentRunningBuild build) throws RunBuildException {
@@ -151,7 +146,7 @@ public class RunAsCommandLineProcessor implements BuildCommandLineProcessor {
 
   private static String replacePattern(final String command, final String pattern, String replacement) {
     if (replacement == null) return command;
-    if (replacement.indexOf(" ") != -1) replacement = "\"" + replacement + "\"";
+    if (replacement.contains(" ")) replacement = "\"" + replacement + "\"";
     return command.replace(pattern, replacement);
   }
 }
